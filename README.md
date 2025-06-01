@@ -8,7 +8,7 @@ This repository provides documentation in two languages:
 
 ## Idiomas / Languages
 
-- 🇧🇷 [Português](README.pt.md)
+- 🇧🇷 [Português](pt/README.pt.md)
 - 🇺🇸 [English](en/README.en.md)
 
 ---
