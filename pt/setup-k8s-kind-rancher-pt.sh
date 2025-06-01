@@ -341,7 +341,13 @@ EOF
   echo_info "Criando cluster Kind ($CLUSTER_NAME)... Este processo pode levar vários minutos."
   kind create cluster --name "$CLUSTER_NAME" --config "$KIND_CONFIG_FILE"
   if [ $? -ne 0 ]; then echo_error "Falha ao criar o cluster Kind."; exit 1; fi
-  echo_success "Cluster Kind criado."
+
+  echo_info "🔧 Desabilitando restart automático dos containers do Kind..."
+  for container in $(docker ps -a --filter name="$CLUSTER_NAME" --format "{{.Names}}"); do
+    docker update --restart=no "$container"
+  done
+
+  echo_success "✅ Cluster Kind criado e configurado com restart=‘no’."
 }
 
 start_kind_cluster() {
